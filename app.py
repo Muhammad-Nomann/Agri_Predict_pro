@@ -239,7 +239,7 @@ def predict_price(commodity_name, supply_city_name, future_date, quantity,
         future_date_ordinal = pd.to_datetime(future_date).toordinal()
         input_data = np.array([[future_date_ordinal, commodity_encoded, city_encoded, quantity]])
         predicted_price = rf_regressor.predict(input_data)[0]
-        return predicted_price + random.uniform(-0.1, 0.1) * predicted_price + predicted_price * 0.1
+        return predicted_price + predicted_price * 0.1
     except Exception as e:
         return f"Error predicting price: {str(e)}"
 
