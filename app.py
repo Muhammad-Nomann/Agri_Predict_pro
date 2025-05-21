@@ -239,7 +239,7 @@ def predict_price(commodity_name, supply_city_name, future_date, quantity,
         future_date_ordinal = pd.to_datetime(future_date).toordinal()
         input_data = np.array([[future_date_ordinal, commodity_encoded, city_encoded, quantity]])
         predicted_price = rf_regressor.predict(input_data)[0]
-        return predicted_price + random.uniform(-0.1, 0.1) * predicted_price
+        return predicted_price + random.uniform(-0.1, 0.1) * predicted_price + predicted_price * 0.1
     except Exception as e:
         return f"Error predicting price: {str(e)}"
 
@@ -296,7 +296,7 @@ def main():
         """)
         
         st.markdown("---")
-        st.markdown("Built with ❤️ by Namal University")
+        st.markdown("Built by Namal University Business Studnets")
 
     # Handle single date selection
     if len(date_range) == 1:
@@ -478,7 +478,7 @@ def main():
     # Predictions Tab
     with tab4:
         st.header("🔮 Smart Predictions")
-        st.markdown("Get AI-powered recommendations for optimal selling strategies.")
+        st.markdown("Get recommendations for optimal selling strategies.")
         
         with st.container():
             st.markdown("""
@@ -502,7 +502,7 @@ def main():
                 "**Quantity**", 
                 min_value=1, 
                 value=100,
-                help="Enter quantity in 100kg units (1 = 100kg), except for Banana (per Dozon)"
+                help="Enter quantity to sell (1q = 100kg), except for Banana (per Dozon)"
             )
 
         if st.button("**Get Recommendations**", type="primary", help="Click to generate predictions"):
@@ -519,7 +519,7 @@ def main():
             # --- Dynamic Units Logic ---
             is_banana = commodity_pred.lower() == "banana"
             price_unit = "PKR/Dozon" if is_banana else "PKR/100kg"
-            quantity_unit = "kg" if is_banana else "100kg units"
+            quantity_unit = "Dozons" if is_banana else "100kg units"
             
             # --- Display Results ---
             st.success("### 📊 Prediction Results")
