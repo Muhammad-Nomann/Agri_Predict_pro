@@ -519,7 +519,7 @@ def main():
             # --- Dynamic Units Logic ---
             is_banana = commodity_pred.lower() == "banana"
             price_unit = "PKR/Dozon" if is_banana else "PKR/100kg"
-            quantity_unit = "Dozons" if is_banana else "100kg units"
+            quantity_unit = "Dozons" if is_banana else "kg units"
             
             # --- Display Results ---
             st.success("### 📊 Prediction Results")
