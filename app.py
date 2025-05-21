@@ -323,7 +323,7 @@ def main():
 
     # Tabs with new Home tab
     tab0, tab1, tab2, tab3, tab4, tab5 = st.tabs(["🏠 Dashboard", "📈 Price Trends", "📊 Supply Analysis", 
-                                                 "🌍 Market Insights", "🔮 Predict", "📂 Raw Data"])
+                                                 "🌍 Market Insights", "🔮 Prediction", "📂 Raw Data"])
 
     # Home Tab with Donut Charts
     with tab0:
@@ -493,13 +493,13 @@ def main():
         with col1:
             commodity_pred = st.selectbox("**Select Crop/Commodity**", common_crops, 
                                         help="Choose the crop you want to sell")
-            supply_city_pred = st.selectbox("**From (Supply City)**", le_supply_city.classes_,
+            supply_city_pred = st.selectbox("**Near Mundi/Market**", le_supply_city.classes_,
                                           help="Your current location")
         with col2:
             future_date = st.date_input("**Selling Date**", min_value=datetime.today(),
                                       help="When you plan to sell your produce")
             quantity_pred = st.number_input(
-                "**Quantity**", 
+                "**Quantity in quintal**", 
                 min_value=1, 
                 value=100,
                 help="Enter quantity to sell (1q = 100kg), except for Banana (per Dozon)"
@@ -554,7 +554,7 @@ def main():
 
     # Data View Tab
     with tab5:
-        st.header("📂 Raw Data Explorer")
+        st.header("📂 Data Explorer")
         st.markdown("Inspect and explore the underlying dataset.")
         
         if not df_supply_filtered.empty or not df_price_filtered.empty:
